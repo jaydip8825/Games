@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
-.user-dashboard-container {
+.welcome-dashboard-container {
   min-height: 100vh;
   width: 100vw;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -10,59 +11,275 @@
   font-family: 'Inter', sans-serif;
 }
 
-.user-dashboard-card {
-  background: rgba(255, 255, 255, 0.97);
+.welcome-dashboard-card {
+  background: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 32px rgba(102, 126, 234, 0.15);
   padding: 48px 36px;
   text-align: center;
+  min-width: 320px;
   max-width: 400px;
-  width: 100%;
-  animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.user-dashboard-card h1 {
+.welcome-dashboard-card h1 {
   color: #4f46e5;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
-.user-dashboard-card h2 {
+.welcome-user-name {
   color: #333;
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
-.user-highlight {
-  color: #ffd700;
+.welcome-user-name span {
+  color: #764ba2;
+}
+
+.welcome-user-email {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.dashboard-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 32px 0 24px 0;
+}
+
+.dashboard-btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+}
+.dashboard-welcome {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+.dashboard-btn.active,
+.dashboard-btn:hover:not(.logout) {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.dashboard-btn.logout {
+  background: #ff512f;
+  color: #fff;
+}
+
+.dashboard-btn.logout:hover {
+  background: #dd2476;
+}
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  background: #f4f6fa;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 240px;
+  background: #232b3e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 32px;
+  box-shadow: 2px 0 16px rgba(35, 43, 62, 0.08);
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  padding-left: 32px;
+  letter-spacing: 1px;
+}
+
+.logo-square {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 6px;
+  margin-right: 12px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.sidebar-menu li {
+  padding: 16px 32px;
+  cursor: pointer;
+  color: #bfc9da;
+  font-size: 1.08rem;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-menu li i {
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+
+.sidebar-menu li.active,
+.sidebar-menu li:hover {
+  background: #313a4e;
+  color: #fff;
+}
+
+.sidebar-signout {
+  margin: 32px 32px 0 32px;
+  padding: 12px 0;
+  background: #ff512f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-signout i {
+  margin-right: 10px;
+}
+
+.sidebar-signout:hover {
+  background: #dd2476;
+}
+
+.dashboard-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 40px 40px 40px 40px;
+  box-sizing: border-box;
+}
+
+.dashboard-section h1 {
+  color: #4f46e5;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.profile-section, .edit-profile-form {
+  background: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(102, 126, 234, 0.10);
+  padding: 28px 20px;
+  margin-top: 18px;
+  text-align: left;
+}
+
+.profile-section h2,
+.edit-profile-form h2 {
+  color: #4f46e5;
+  margin-bottom: 18px;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
-.user-dashboard-message {
-  color: #555;
+.profile-section p {
+  color: #333;
   font-size: 1.1rem;
-  margin-top: 18px;
+  margin-bottom: 10px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.edit-profile-form label {
+  display: block;
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 1rem;
 }
 
-@media (max-width: 500px) {
-  .user-dashboard-card {
-    padding: 32px 10px;
-    max-width: 95vw;
-  }
-  .user-dashboard-card h1 {
-    font-size: 1.3rem;
-  }
+.edit-profile-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  transition: border 0.2s;
+}
+
+.edit-profile-form input:focus {
+  border-color: #667eea;
+  outline: none;
+}
+
+.edit-profile-form button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.edit-profile-form button:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.edit-profile-form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }

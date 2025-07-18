@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './SignUpDashboard.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignUpDashboard = () => {
+  const { signup } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -49,25 +51,14 @@ const SignUpDashboard = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          role: formData.role,
-        }),
-      });
+      const result = await signup(formData.name, formData.email, formData.password, formData.role);
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.message || data.error || 'Sign up failed.');
-      } else {
+      if (result.success) {
         setSuccess('Sign up successful!');
         // Optionally reset form:
         // setFormData({ name: '', email: '', password: '', confirmPassword: '', role: 'user' });
+      } else {
+        setError(result.error || 'Sign up failed.');
       }
     } catch (err) {
       console.log(err);

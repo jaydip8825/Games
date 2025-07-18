@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import './LoginDashboard.css';
 
-const LoginDashboard = ({ setUser }) => {
+const LoginDashboard = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,28 +30,19 @@ const LoginDashboard = ({ setUser }) => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.message || 'Login failed.');
-      } else {
-        setUser(data.user); // Save user info in App state
-        // navigate('/SuperAdminDashboard');
+      const result = await login(formData.email, formData.password, formData.role);
       
+      if (result.success) {
         // ✅ Role-based redirect
-        if (data.user.role === "admin") {
+        if (result.user.role === "admin") {
           navigate('/AdminDashboard');
-        } else if (data.user.role === "super_admin") {
+        } else if (result.user.role === "super_admin") {
           navigate('/SuperAdminDashboard');
         } else {
           navigate('/WelcomeDashboard');
         }
+      } else {
+        setError(result.error || 'Login failed.');
       }
       
     } catch (err) {

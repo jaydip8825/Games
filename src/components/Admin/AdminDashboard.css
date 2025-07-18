@@ -1,68 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
-.admin-dashboard-container {
+.dashboard-layout {
+  display: flex;
   min-height: 100vh;
+  height: 100vh;
   width: 100vw;
+  background: #f4f6fa;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 240px;
+  background: #185a9d;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 32px;
+  box-shadow: 2px 0 16px rgba(24, 90, 157, 0.08);
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  padding-left: 32px;
+  letter-spacing: 1px;
+}
+
+.logo-square {
+  width: 28px;
+  height: 28px;
   background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+  border-radius: 6px;
+  margin-right: 12px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.sidebar-menu li {
+  padding: 16px 32px;
+  cursor: pointer;
+  color: #bfc9da;
+  font-size: 1.08rem;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-menu li i {
+  margin-right: 12px;
+  font-size: 1.1rem;
+}
+
+.sidebar-menu li.active,
+.sidebar-menu li:hover {
+  background: #2376ae;
+  color: #fff;
+}
+
+.sidebar-signout {
+  margin: 32px 32px 0 32px;
+  padding: 12px 0;
+  background: #ff512f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
 }
 
-.admin-dashboard-card {
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 24px;
-  box-shadow: 0 10px 32px rgba(24, 90, 157, 0.15);
-  padding: 56px 40px;
-  text-align: center;
-  max-width: 440px;
-  width: 100%;
-  animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+.sidebar-signout i {
+  margin-right: 10px;
 }
 
-.admin-dashboard-card h1 {
-  color: #185a9d;
-  font-size: 2.3rem;
-  font-weight: 700;
+.sidebar-signout:hover {
+  background: #dd2476;
+}
+
+.dashboard-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 40px 40px 40px 40px;
+  box-sizing: border-box;
+}
+
+.dashboard-welcome {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 20px;
+  color: #185a9d;
 }
 
-.admin-dashboard-card h2 {
-  color: #333;
-  font-size: 1.3rem;
-  font-weight: 600;
+.profile-section, .edit-profile-form {
+  background: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(24, 90, 157, 0.10);
+  padding: 28px 20px;
+  margin-top: 18px;
+  text-align: left;
+}
+
+.profile-section h2,
+.edit-profile-form h2 {
+  color: #185a9d;
   margin-bottom: 18px;
-}
-
-.admin-highlight {
-  color: #43cea2;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
-.admin-dashboard-message {
-  color: #555;
+.profile-section p {
+  color: #333;
   font-size: 1.1rem;
-  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.edit-profile-form label {
+  display: block;
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 1rem;
 }
 
-@media (max-width: 500px) {
-  .admin-dashboard-card {
-    padding: 32px 10px;
-    max-width: 95vw;
-  }
-  .admin-dashboard-card h1 {
-    font-size: 1.3rem;
-  }
+.edit-profile-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  transition: border 0.2s;
+}
+
+.edit-profile-form input:focus {
+  border-color: #43cea2;
+  outline: none;
+}
+
+.edit-profile-form button {
+  background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.edit-profile-form button:hover {
+  background: linear-gradient(135deg, #185a9d 0%, #43cea2 100%);
 }

@@ -1,68 +1,185 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
-.superadmin-dashboard-container {
+.dashboard-layout {
+  display: flex;
   min-height: 100vh;
+  height: 100vh;
   width: 100vw;
+  background: #f8fafc;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+.superadmin-sidebar {
+  width: 260px;
   background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: 32px;
+  box-shadow: 2px 0 24px rgba(221, 36, 118, 0.12);
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 44px;
+  padding-left: 32px;
+  letter-spacing: 1px;
+}
+
+.logo-square.superadmin-logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+  border-radius: 8px;
+  margin-right: 14px;
+  border: 2px solid #fff;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 44px 0;
+}
+
+.sidebar-menu li {
+  padding: 18px 36px;
+  cursor: pointer;
+  color: #ffe3e3;
+  font-size: 1.12rem;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-menu li i {
+  margin-right: 14px;
+  font-size: 1.2rem;
+}
+
+.sidebar-menu li.active,
+.sidebar-menu li:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-left: 4px solid #fff;
+}
+
+.superadmin-signout {
+  margin: 36px 36px 0 36px;
+  padding: 14px 0;
+  background: #fff;
+  color: #dd2476;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
+  box-shadow: 0 2px 8px rgba(221, 36, 118, 0.10);
 }
 
-.superadmin-dashboard-card {
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 24px;
-  box-shadow: 0 10px 32px rgba(221, 36, 118, 0.15);
-  padding: 56px 40px;
-  text-align: center;
-  max-width: 440px;
-  width: 100%;
-  animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+.superadmin-signout i {
+  margin-right: 12px;
 }
 
-.superadmin-dashboard-card h1 {
+.superadmin-signout:hover {
+  background: #ff512f;
+  color: #fff;
+}
+
+.dashboard-main {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 48px 48px 48px 48px;
+  box-sizing: border-box;
+}
+
+.superadmin-welcome {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 28px;
   color: #dd2476;
-  font-size: 2.3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
-.superadmin-dashboard-card h2 {
-  color: #333;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 18px;
+.superadmin-profile, .superadmin-edit-form {
+  background: #fff0f6;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(221, 36, 118, 0.10);
+  padding: 32px 28px;
+  margin-top: 18px;
+  text-align: left;
+  min-width: 320px;
+  max-width: 420px;
 }
 
-.superadmin-highlight {
+.superadmin-profile h2,
+.superadmin-edit-form h2 {
   color: #ff512f;
+  margin-bottom: 18px;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
-.superadmin-dashboard-message {
-  color: #555;
-  font-size: 1.1rem;
-  margin-top: 20px;
+.superadmin-profile p {
+  color: #333;
+  font-size: 1.13rem;
+  margin-bottom: 12px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.superadmin-edit-form label {
+  display: block;
+  margin-bottom: 18px;
+  color: #333;
+  font-size: 1.05rem;
 }
 
-@media (max-width: 500px) {
-  .superadmin-dashboard-card {
-    padding: 32px 10px;
-    max-width: 95vw;
-  }
-  .superadmin-dashboard-card h1 {
-    font-size: 1.3rem;
-  }
+.superadmin-edit-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #ffb3c6;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 7px;
+  margin-bottom: 10px;
+  transition: border 0.2s;
+}
+
+.superadmin-edit-form input:focus {
+  border-color: #ff512f;
+  outline: none;
+}
+
+.superadmin-edit-form button {
+  background: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background 0.2s;
+}
+
+.superadmin-edit-form button:hover {
+  background: linear-gradient(135deg, #dd2476 0%, #ff512f 100%);
 }
